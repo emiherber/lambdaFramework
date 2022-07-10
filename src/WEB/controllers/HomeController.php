@@ -1,6 +1,7 @@
 <?php
 
 namespace LambdaFramework\WEB\controllers;
+use Exception;
 
 class HomeController extends BaseController{
     function __construct() {
@@ -8,6 +9,7 @@ class HomeController extends BaseController{
     }
     
     function index(){
+        throw new Exception('home/index', 401);
         $this->vista('home/index');
     }
 }

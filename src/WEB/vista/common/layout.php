@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title><?= $view->headTitulo; ?></title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- Tell the browser to be responsive to screen width -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet" type="text/css">
-        <link href="https://cdn.jsdelivr.net/npm/quasar@2.7.5/dist/quasar.prod.css" rel="stylesheet" type="text/css">
+        <title><?= $view->headTitulo; ?></title>
+        <?php require_once 'bundles/_bundleStyles.php'; ?>
     </head>
     <body>
         <div id="q-app">

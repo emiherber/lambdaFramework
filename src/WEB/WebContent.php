@@ -111,16 +111,30 @@ class WebContent {
             $layout = $instanciaController->getLayout() . '.php';
         } catch (Exception $e) {
             $layout = 'layout_error.php';
-
+            $vista = '/vista/common/error';
+            
             switch ($e->getCode()) {
+                case 401:
+                case 403:
+                    $view->headTitulo = 'Error ' . $e->getCode();
+                    $view->titulo = 'Error '. $e->getCode(). ' - No tiene suficientes permisos.';
+                    $view->msjError = $e->getMessage();
+                    break;
                 case 404:
+                    $view->headTitulo = 'Error 404';
+                    $view->titulo = 'Error 404 - Página no encontrada.';
+                    $view->msjError = $e->getMessage();
+                    break;
+                case 500:
+                    $view->headTitulo = 'Error 500';
+                    $view->titulo = 'Error 500 - Error interno controlado';
+                    $view->msjError = $e->getMessage();
+                    $view->codeError = 500;
                     break;
                 default:
                     $view->headTitulo = 'Error 500';
-                    $view->titulo = 'Error no controlado por el sistema.';
+                    $view->titulo = 'Error 500 - Error no controlado por el sistema.';
                     $view->msjError = $e->getMessage();
-                    $view->codeError = 500;
-                    $vista = '/vista/common/error_generico';
                     break;
             }
         }
