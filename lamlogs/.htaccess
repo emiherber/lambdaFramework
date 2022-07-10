@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/lamlogs
+RewriteRule ^(.*)$ - [F,L]
