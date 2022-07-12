@@ -9,7 +9,6 @@ class HomeController extends BaseController {
     }
 
     function index() {
-        throw new \Exception('prueba error log', 404);
         $this->vista('home/index');
     }
 

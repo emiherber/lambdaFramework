@@ -22,7 +22,7 @@
                             <q-tooltip>Modo Oscuro</q-tooltip>
                         </q-toggle>
                         <?php if(HABILITA_AUTENTICACION): ?>
-                            <q-btn align="between" dense flat class="btn-fixed-width" icon="logout" href="/Login/salir" label="Salir"></q-btn>
+                            <q-btn align="between" dense flat class="btn-fixed-width" icon="logout" href="<?=__PATHURL__?>Login/salir" label="Salir"></q-btn>
                         <?php endif;?>
                     </q-toolbar>
                 </q-header>
@@ -77,10 +77,10 @@
                         </q-list>
                     </q-scroll-area>
 
-                    <q-img class="absolute-top" src="/assets/img/material.png" style="height: 150px">
+                    <q-img class="absolute-top" src="<?=__PATHURL__?>assets/img/material.png" style="height: 150px">
                         <div class="absolute-bottom bg-transparent">
                             <q-avatar size="56px" class="q-mb-sm">
-                                <img src="/assets/img/undraw_co-working_re_w93t.svg">
+                                <img src="<?=__PATHURL__?>assets/img/undraw_co-working_re_w93t.svg">
                             </q-avatar>
                             <div class="text-weight-bold">Razvan Stoenescu</div>
                             <div>@rstoenescu</div>

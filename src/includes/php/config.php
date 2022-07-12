@@ -6,8 +6,6 @@ define('SERVIDOR_PRUEBAS', true);
 
 /**
  * Habilita el control de autenticación.
- * @access private
- * @var boolean
  */
 define('HABILITA_AUTENTICACION', false);
 
@@ -23,3 +21,9 @@ if(PHP_OS == 'WINNT'){
     setlocale(LC_ALL, 'es_AR.UTF-8');
     define('__DR__', $_SERVER['DOCUMENT_ROOT'].'/');
 }
+
+/*
+ * Dominio del servidor
+ */
+$auxServer = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
+define("__PATHURL__",  $auxServer."://".$_SERVER["HTTP_HOST"]."/");
