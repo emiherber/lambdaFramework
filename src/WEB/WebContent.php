@@ -121,9 +121,11 @@ class WebContent {
                     $view->msjError = $e->getMessage();
                     break;
                 case 404:
+                    
                     $view->headTitulo = 'Error 404';
                     $view->titulo = 'Error 404 - Página no encontrada.';
                     $view->msjError = $e->getMessage();
+                    \LambdaFramework\includes\php\ErrorLog::log('404', 'webcontent', $view->msjError);
                     break;
                 case 500:
                     $view->headTitulo = 'Error 500';
