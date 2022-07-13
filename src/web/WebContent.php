@@ -1,5 +1,4 @@
 <?php
-
 namespace lambdaFramework\web;
 
 use stdClass;

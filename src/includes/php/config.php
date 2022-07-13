@@ -27,3 +27,8 @@ if(PHP_OS == 'WINNT'){
  */
 $auxServer = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
 define("__PATHURL__",  $auxServer."://".$_SERVER["HTTP_HOST"]."/");
+
+/**
+ * Creamos la sesion
+ */
+\lambdaFramework\includes\php\Registro::getInstance();
