@@ -1,5 +1,5 @@
 <?php
-namespace LambdaFramework\includes\php;
+namespace lambdaFramework\includes\php;
 
 use Exception;
 

@@ -1,6 +1,7 @@
 <?php
 
-namespace LambdaFramework\WEB;
+namespace lambdaFramework\web;
+
 use stdClass;
 use Exception;
 
@@ -15,7 +16,7 @@ class WebContent {
      * @var array string
      */
     private $controladoresExcluidos = ['Base'];
-    private string $namespaceController = 'LambdaFramework\WEB\controllers\\';
+    private string $namespaceController = 'lambdaFramework\web\controllers\\';
 
     /**
      * Lista los contraladores publicos en caso que la autenticación este habilitada.
@@ -23,7 +24,6 @@ class WebContent {
      * @var array string
      */
     private $controladoresPublicos = ['Login'];
-
     private string $controlador;
     private string $accion;
     private $args;
@@ -65,11 +65,11 @@ class WebContent {
 
     private function validarRequest(): bool {
         $claseControlador = $this->namespaceController . $this->controlador . 'Controller';
-        
+
         if (array_key_exists($this->controlador, $this->controladoresExcluidos)) {
             return false;
         }
-        
+
         if (!class_exists($claseControlador)) {
             return false;
         }
@@ -102,26 +102,31 @@ class WebContent {
             } else {
                 call_user_func_array(array($instanciaController, $metodoController), $this->args);
             }
-            
+
             $view->headTitulo = $instanciaController->getHeadTitulo();
             $view->titulo = $instanciaController->getTitulo();
             $view->scripts = $instanciaController->getScript();
             $vista = $instanciaController->getVista();
-            
+
             $layout = $instanciaController->getLayout() . '.php';
         } catch (Exception $e) {
             $layout = 'layout_error.php';
             $vista = '/vista/common/error';
-            
+
             switch ($e->getCode()) {
+                case 50:
+                    $view->headTitulo = 'Error ' . $e->getCode();
+                    $view->titulo = 'Error ' . $e->getCode() . ' - Al establecer un enlace con la base de datos.';
+                    $view->msjError = $e->getMessage();
+                    break;
                 case 401:
                 case 403:
                     $view->headTitulo = 'Error ' . $e->getCode();
-                    $view->titulo = 'Error '. $e->getCode(). ' - No tiene suficientes permisos.';
+                    $view->titulo = 'Error ' . $e->getCode() . ' - No tiene suficientes permisos.';
                     $view->msjError = $e->getMessage();
                     break;
                 case 404:
-                    
+
                     $view->headTitulo = 'Error 404';
                     $view->titulo = 'Error 404 - Página no encontrada.';
                     $view->msjError = $e->getMessage();
@@ -141,17 +146,17 @@ class WebContent {
             }
         }
 
-        if($vista == ''){
+        if ($vista == '') {
             exit();
         }
-        
+
         ob_start();
         require_once __DIR__ . $vista . '.php';
         $view->buffer = ob_get_contents();
         ob_end_clean();
-        
+
         if ($layout != '') {
-           include __DIR__ . '/vista/common/' . $layout;
+            include __DIR__ . '/vista/common/' . $layout;
         }
     }
 

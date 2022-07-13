@@ -1,5 +1,5 @@
 <?php
-namespace LambdaFramework\WEB\controllers;
+namespace lambdaFramework\web\controllers;
 use stdClass;
 
 abstract class BaseController {

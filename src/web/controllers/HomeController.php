@@ -1,6 +1,6 @@
 <?php
 
-namespace LambdaFramework\WEB\controllers;
+namespace lambdaFramework\web\controllers;
 
 class HomeController extends BaseController {
 
